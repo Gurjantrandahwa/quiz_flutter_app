@@ -37,7 +37,8 @@ class _QuizState extends State<Quiz> {
           ),
         ),
         child: activeScreen,
-      )),
+      ),
+      ),
     );
   }
 }
