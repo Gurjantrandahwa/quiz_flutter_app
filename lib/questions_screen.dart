@@ -7,6 +7,7 @@ class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key, required this.onSelectAnswer});
 
   final void Function(String answer) onSelectAnswer;
+
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
 }
@@ -15,8 +16,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentQuestionIndex = 0;
 
   answerQuestion(String selectedAnswer) {
-    widget.onSelectAnswer('...');
-    // currentQuestionIndex = currentQuestionIndex + 1;
+    widget.onSelectAnswer(selectedAnswer);
     setState(() {
       currentQuestionIndex++;
     });
@@ -36,20 +36,19 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           children: [
             Text(
               currentQuestion.text,
-              style:GoogleFonts.poppins(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.w500
-              ),
+              style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 30),
             ...currentQuestion.getShuffledAnswers().map((answer) {
               return AnswerButton(
                 answerText: answer,
-                onTap: (){
+                onTap: () {
                   answerQuestion(answer);
-                  },
+                },
               );
             })
           ],
